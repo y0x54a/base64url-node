@@ -11,6 +11,14 @@ describe('decode', () => {
     }
   });
 
+  test('valid input strings with encoding', () => {
+    for (const input of validInputs) {
+      const hex = Buffer.from(input[0], 'utf8').toString('hex');
+      const result = decode(input[2], 'hex');
+      expect(result).toBe(hex);
+    }
+  });
+
   test('invalid input strings', () => {
     for (const base64url of invalidInputs) {
       const test = () => decode(base64url);
